@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Assignment3_N01434210.Models.Student>
+@{
+    ViewBag.Title = "List";
+}
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+<!--This page should be showing information about all students-->
+
+<div id="containerlist">
+    <h2>List of Students</h2>
+    @foreach (var student in Model)
+    {
+        <div class="listitem row">
+            <div class="col-md-12"><a href="/Student/Show/@student.StudentId">@student.StudentFname @student.StudentLname</a></div>
+        </div>
+    }
+</div>
+

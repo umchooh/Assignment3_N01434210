@@ -1,0 +1,32 @@
+﻿@model Assignment3_N01434210.Models.Teacher
+
+@{
+    ViewBag.Title = "Show";
+}
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+<h2>Teacher's Information</h2>
+<a class="navlink" href="/Teacher/List">Back To Teachers</a>
+<div id="containershow">
+    <h3>@Model.TeacherFname @Model.TeacherLname</h3>
+
+    <table class="teacher-table">
+        <thead>
+            <tr>
+                <th>Employee Number</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+                <th>Class(es) Code</th>
+                <th>Class(es) Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.EmployeeNumber</td>
+                <td>@Model.HireDate</td>
+                <td>$@Model.Salary</td>
+                <td class="code">@Model.ClassesCode</td>
+                <td>@Model.ClassesName</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
