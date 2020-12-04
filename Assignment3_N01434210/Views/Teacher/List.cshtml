@@ -6,7 +6,15 @@
 <!--This page should be showing information about all teachers-->
 
 <div id="containerlist">
+    <nav>
+        <a class="navnewlink" href="/Teacher/New">New Teacher</a>
+    </nav>
     <h2>List of Teachers</h2>
+    <form action="/Teacher/List" method="GET">
+        <input type="text" name="SearchKey" autocomplete="off" />
+        <input type="submit" value="Search" />
+    </form>
+
     @foreach (var teacher in Model)
     {
         <div class="listitem row">

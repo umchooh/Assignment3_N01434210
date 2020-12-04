@@ -25,8 +25,8 @@ namespace Assignment3_N01434210.Models
         public string EmployeeNumber;
 
         //Thefollowing fields define course(s) taught by Teacher
-        public string ClassesCode;
-        public string ClassesName;
+        public List<Class> ClassTeachBy;
+        
 
     }
 }

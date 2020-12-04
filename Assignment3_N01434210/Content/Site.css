@@ -14,8 +14,15 @@ input,
 select,
 textarea {
     max-width: 280px;
+    margin-bottom:1em;
 }
-
+.newTeacher_form {
+    width:100%;
+    font-size:1.4em;
+}
+label {
+    max-width: 200px;
+}
 .h2-heading{
     padding-bottom: 1em;
     text-decoration: underline;
@@ -24,7 +31,26 @@ textarea {
     float: right;
     font-size:1.5em;
 }
-.teacher-table, .student-table, .class-table{
+.navlinkleft {
+    float: left;
+    font-size: 1.5em;
+    padding-bottom:1em;
+    display:inline-block;
+}
+.navnewlink {
+    float: right;
+    font-size: 1.3em;
+}
+.dellink {
+    float: right;
+    font-size: 1.5em;
+    border:2px solid red;
+    border-radius:5px;
+    padding:10px;
+    background-color:red;
+    color:white;
+}
+.teacher-table, .student-table, .class-table {
     font-family: arial, sans-serif;
     width: 100%;
     margin-top: 0.5em;
@@ -38,12 +64,19 @@ td, th {
 #containerlist {
   font-size:1.5em;
 }
-
+#containershow {
+    padding-top:0.5em;
+    clear:both;
+    font-size:1.2em;
+}
+.aside1 {
+    font-size:1.2em;
+}
 h2 {
     font-size: 2em;
     font-weight: bold;
     margin-top: 1.2em;
-    margin-bottom:1em;
+    margin-bottom: 1em;
 }
 .code {
     text-transform:uppercase;

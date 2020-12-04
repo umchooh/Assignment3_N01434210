@@ -5,28 +5,42 @@
 }
 <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 <h2>Teacher's Information</h2>
-<a class="navlink" href="/Teacher/List">Back To Teachers</a>
+<nav>
+    <a class="navlinkleft" href="/Teacher/List">Back To Teachers</a>
+    <a class="dellink" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
+</nav>
 <div id="containershow">
     <h3>@Model.TeacherFname @Model.TeacherLname</h3>
-
-    <table class="teacher-table">
-        <thead>
-            <tr>
-                <th>Employee Number</th>
-                <th>Hire Date</th>
-                <th>Salary</th>
-                <th>Class(es) Code</th>
-                <th>Class(es) Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.EmployeeNumber</td>
-                <td>@Model.HireDate</td>
-                <td>$@Model.Salary</td>
-                <td class="code">@Model.ClassesCode</td>
-                <td>@Model.ClassesName</td>
-            </tr>
-        </tbody>
-    </table>
+    <p style="font-style:italic;">Join Since @Model.HireDate.ToString("dd-MMM-yyyy")</p>
+    <p>Salary: $@Model.Salary</p>
 </div>
+<aside class="aside1">
+    <h3>Classes taught by @Model.TeacherFname @Model.TeacherLname</h3>
+    <ul>
+        @foreach (var classes in Model.ClassTeachBy)
+        {
+            <li>@classes.ClassCode @classes.ClassName</li>
+        }
+    </ul>
+</aside>
+<!--Comment out because table is not supposed to be used; suggesting using loop to gather courses teach by a teacher instead-->
+<!--<table class="teacher-table">
+    <thead>
+        <tr>
+            <th>Employee Number</th>
+            <th>Hire Date</th>
+            <th>Salary</th>
+            <th>Class(es) Code</th>
+            <th>Class(es) Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.EmployeeNumber</td>
+            <td>@Model.HireDate.ToString("dd-MMM-yyyy")</td>
+            <td>$@Model.Salary</td>
+            <td class="code">ClassCode</td>
+            <td>ClassName</td>
+        </tr>
+    </tbody>
+</table>-->

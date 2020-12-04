@@ -107,3 +107,6 @@ C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\bin\Micro
 C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\obj\Debug\Assignment3_N01434210.csproj.CopyComplete
 C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\obj\Debug\Assignment3_N01434210.dll
 C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\obj\Debug\Assignment3_N01434210.pdb
+C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\bin\System.Web.Cors.dll
+C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\bin\System.Web.Http.Cors.dll
+C:\Users\Choo\source\repos\Assignment3_N01434210\Assignment3_N01434210\bin\System.Web.Http.Cors.xml
