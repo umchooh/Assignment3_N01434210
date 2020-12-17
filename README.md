@@ -18,3 +18,12 @@ Author: Christine Bittle
 Date: Dec 01, 2020
 Version :   https://github.com/christinebittle/BlogProject_5/commit/d663bd7ef67d27de46a72a0f553724b4f6ac6004
 Availability: https://github.com/christinebittle/BlogProject_5
+
+Assignment 3 version 3 using the following reference code :
+
+Reference for educational purposes-build MVC
+Title: Blog Project 6
+Author: Christine Bittle
+Date: Dec 12, 2020
+Version :   https://github.com/christinebittle/BlogProject_6/commit/ec3e22c9024a0909903a2e936cb7323e47b716f4
+Availability: https://github.com/christinebittle/BlogProject_6
