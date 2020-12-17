@@ -27,15 +27,20 @@ label {
     padding-bottom: 1em;
     text-decoration: underline;
 }
-.navlink{
+nav{
+    display:inline;
+}
+.navlink {
     float: right;
-    font-size:1.5em;
+    font-size: 1.5em;
+    
 }
 .navlinkleft {
     float: left;
     font-size: 1.5em;
-    padding-bottom:1em;
-    display:inline-block;
+    padding-bottom:2em;
+    
+    margin-right:2em;
 }
 .navnewlink {
     float: right;
@@ -50,26 +55,24 @@ label {
     background-color:red;
     color:white;
 }
-.teacher-table, .student-table, .class-table {
-    font-family: arial, sans-serif;
+.showTeacher-div {
     width: 100%;
-    margin-top: 0.5em;
-}
-td, th {
-    border: 5px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    font-size: 1.4em;
+    clear:both;
+  
 }
-
+.showTeacher-div>h3 {
+    text-decoration:underline;
+    padding-bottom:1em;
+    
+}
 #containerlist {
   font-size:1.5em;
 }
-#containershow {
-    padding-top:0.5em;
-    clear:both;
-    font-size:1.2em;
-}
+
 .aside1 {
+    padding-top:1em;
     font-size:1.2em;
 }
 h2 {
@@ -86,4 +89,5 @@ h2 {
     margin-top:1.2em;
     font-size:1em;
 }
+
 

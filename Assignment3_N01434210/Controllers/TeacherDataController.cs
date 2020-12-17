@@ -35,6 +35,7 @@ namespace Assignment3_N01434210.Controllers
         /// </returns>
         [HttpGet]
         [Route("api/TeacherData/ListTeachers/{SearchKey?}")]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
         public IEnumerable<Teacher> ListTeachers(string SearchKey = null)
         {
 
@@ -96,9 +97,10 @@ namespace Assignment3_N01434210.Controllers
         /// This method will access school database connection and return a full 'ResultSet', however, we only required a single teacher's information, so parameter {id} placed to be more specified.
         /// </summary>
         /// <param name="Teacherid">represent a unique id for each teacher while looping thru the school database (id is added when rendering the data, to increase its specificity of teacherid).</param>
-        /// <returns>One specific teacher's profile</returns>
+        /// <returns>One specific teacher's profile(matching the tearcherid).Empty Teacher Object if the ID does not match any teachers in the system.</returns>
         [HttpGet]
         [Route("api/TeacherData/FindTeacher/{Teacherid}")]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
         public Teacher FindTeacher(int Teacherid)
         {
             Teacher OneTeacher = new Teacher();
@@ -116,7 +118,7 @@ namespace Assignment3_N01434210.Controllers
             //Assignment 3:USING GROUP_CONCAT to group class name and class code based on same teacherid in MySQL (DO NOT use groupconcat, use loop in List to listed out multiple courses)
             //Assignment 3:cmd.CommandText = "Select teachers.*, GROUP_CONCAT(classes.classcode)AS 'Class_Code', GROUP_CONCAT(classes.classname) AS 'Class_Name' from teachers join classes on classes.teacherid = teachers.teacherid  where teachers.teacherid =" + Teacherid;
 
-            cmd.CommandText = "Select teachers.*, classes.classcode, classes.classname from teachers join classes on teachers.teacherid = classes.teacherid where teachers.teacherid = @id";
+            cmd.CommandText = "Select teachers.*, classes.classcode, classes.classname from teachers left join classes on teachers.teacherid = classes.teacherid where teachers.teacherid = @id";
             cmd.Parameters.AddWithValue("@id", Teacherid);
             cmd.Prepare();
 
@@ -165,6 +167,7 @@ namespace Assignment3_N01434210.Controllers
         /// <param name="id">The ID of the Teacher.</param>
         /// <example>POST /api/TeacherData/DeleteTeacher/5</example>
         [HttpPost]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
         public void DeleteTeacher(int id)
         {
             //Create an instance of a connection
@@ -205,6 +208,7 @@ namespace Assignment3_N01434210.Controllers
         /// </example>
         [HttpPost]
         [EnableCors(origins: "*", methods: "*", headers: "*")]
+        //public void AddTeacher([FromBody] Teacher NewTeacher)
         public void AddTeacher([FromBody] Teacher NewTeacher)
         {
             //Create an instance of a connection
@@ -224,11 +228,61 @@ namespace Assignment3_N01434210.Controllers
             cmd.Parameters.AddWithValue("@TeacherLname", NewTeacher.TeacherLname);
             cmd.Parameters.AddWithValue("@Salary", NewTeacher.Salary);
             cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("CURRENT_DATE()", NewTeacher.HireDate);
             cmd.Prepare();
 
             cmd.ExecuteNonQuery();
 
             Conn.Close();
+        }
+
+
+        /// <summary>
+        /// Updates an Teacher by teacherID and upadte on exisitng databse. Non-Deterministic due to particular id may not be the same teacher been exsist.
+        /// </summary>
+        /// <param name="TeacherInfo">An object with fields that map to the columns of the author's table.</param>
+        /// <example>
+        /// POST api/TeacherData/UpdateTeacher/20
+        /// FORM DATA / POST DATA / REQUEST BODY 
+        /// {
+        ///	"TeacherFname":"Sam",
+        ///	"TeacherLname":"King",
+        ///	"HireDate":"02-Nov-2020",
+        ///	"Salary" = "15.60",
+        ///	"EmployeeNumber" : "T123"
+        /// }
+        /// </example>
+        /// [FromBody] is attribute indicated obtain information from the body part of the Post request.
+        [HttpPost]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
+        public void UpdateTeacher(int id, [FromBody] Teacher TeacherInfo)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Debug.WriteLine(TeacherInfo.TeacherFname); To test if result is meet
+
+            //Open the connection between the web server and database
+            Conn.Open();
+
+            //Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL QUERY
+            cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname, hiredate=@HireDate, salary=@Salary, employeenumber=@EmployeeNumber where teachers.teacherid=@TeacherId";
+            cmd.Parameters.AddWithValue("@TeacherFname", TeacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@TeacherLname", TeacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@HireDate", TeacherInfo.HireDate);
+            cmd.Parameters.AddWithValue("@Salary", TeacherInfo.Salary);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@TeacherId", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+
         }
     }
 }
